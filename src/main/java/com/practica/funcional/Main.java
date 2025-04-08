@@ -4,14 +4,29 @@ import com.practica.funcional.v10_optional.Descripcion;
 import com.practica.funcional.v10_optional.Flujo;
 import com.practica.funcional.v10_optional.NumbersUtils;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class Main {
 
     Random random = new Random();
     public Main(){
+        ArrayList<String> nombres = new ArrayList<>(List.of("Manolo", "espartaco", "Sandra", "Amanda", "Marian"));
+       // nombres.forEach(System.out::println); // como un for normal.
 
+        //1. Funcion generadora de stream.
+        nombres.stream()
+                //2. 0 o mas operacione intermedias
+                .filter(nombre -> nombre.contains("o"))
+               // .map(nombre -> nombre.length())
+                //3. operacion terminal
+                .forEach(System.out::println);
+
+        //Resumen: Producir, procesar y consumir.
+/*
         Flujo.proveer(10, this::randomInt)
                 .filtrar(valor -> valor >= 0)//NoSuchElementException, lista vacia, si se filtra por un numero superior al generado por random (10)
                 .ordenar(Integer::compareTo)
@@ -23,18 +38,11 @@ public class Main {
                 .ifPresentOrElse(
                         valor -> System.out.println("Maximo: " + valor.doubleValue()),
                         ()-> System.out.println("No hay maximo porque el flujo esta vacio")
-                );//primer argumento si esta presente lo trata, segundo(Runnable) trata el caso de null
-    //            .reducir(0, Integer::sum);
-      //  double maximoDouble = total.orElse(0).doubleValue(); caso de sustituir por un valor si el Optional esta vacio
-       // double maximoDouble = total.orElseThrow(); lanza la excepcion en el caso e que Sea null
-       // double maximoDouble = total.orElseGet(()-> getValorSiNoHayMaximo()); ejecutar un metodo en caso de null
-        //double maximoDouble = total//recibe un consumidor del valor
-        //System.out.println("Máximo: " + maximoDouble);
+                );
+                */
+
     }
 
-    private Integer getValorSiNoHayMaximo() {
-        return 0;
-    }
 
     public static void main(String[] args) {new Main();}
 
