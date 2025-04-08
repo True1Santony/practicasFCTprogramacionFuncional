@@ -13,4 +13,8 @@ public class NumbersUtils {
         }
         return true;
     }
+
+    public static int elevarAlCuadrado(int valor){
+        return valor * valor;
+    }
 }
