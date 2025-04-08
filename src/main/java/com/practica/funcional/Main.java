@@ -1,12 +1,10 @@
 package com.practica.funcional;
 
+import com.practica.funcional.v10_optional.Descripcion;
 import com.practica.funcional.v10_optional.Flujo;
 import com.practica.funcional.v10_optional.NumbersUtils;
 
 import java.util.Random;
-
-import static com.practica.funcional.v10_optional.NumbersUtils.elevarAlCuadrado;
-import static com.practica.funcional.v10_optional.NumbersUtils.esPrimo;
 
 public class Main {
 
@@ -15,8 +13,11 @@ public class Main {
 
         Integer total = Flujo.proveer(10, this::randomInt)
                 .filtrar(NumbersUtils::esPrimo)
+                .ordenar(Integer::compareTo)
                 .transformar(NumbersUtils::elevarAlCuadrado)
+                .transformar(Descripcion::new)
                 .actuar(System.out::println)
+                .transformar(Descripcion::getValue)
                 .reducir(0, Integer::sum);
         System.out.println("Reducción: " + total);
 
