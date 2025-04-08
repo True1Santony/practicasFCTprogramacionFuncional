@@ -1,9 +1,6 @@
 package com.practica.funcional.v10_optional;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.*;
 
 public class Flujo <T>{
@@ -55,8 +52,12 @@ public class Flujo <T>{
         return new Flujo<>(listaOrdenada);
     }
 
-    public T max(Comparator<T> comparator){
-        return Collections.max(valores, comparator);
+    public Optional<T> max(Comparator<T> comparator){
+        try {
+            return Optional.of(Collections.max(valores, comparator));
+        }catch (Exception e){
+            return Optional.empty();
+        }
     }
 
     public T reducir(T identidad, BinaryOperator<T> funcionBinaria){
